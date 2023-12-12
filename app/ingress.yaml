@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: yeaktonghan-devops-simple-spring-ingress
+  namespace: yeaktonghan
+spec:
+  tls:
+    - hosts:
+        - customer1.hanyeaktong.site
+      secretName: customer1-hanyeaktong-site-cert
+  rules:
+    - host: customer1.hanyeaktong.site
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: yeaktonghan-devops-simple-spring-svc
+                port:
+                  number: 8080
